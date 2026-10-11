@@ -103,15 +103,51 @@ public class Cola {
         return Collections.unmodifiableList(new ArrayList<>(coleccion));
     }
 
+    //Iveth Castro R2
     public Pasajero buscarPorAsiento(int asiento) {
         // TODO R2: validar rango y buscar sin retirar pasajeros.
-        throw new UnsupportedOperationException("Pendiente implementar R2: búsqueda");
+        if(asiento<1 || asiento>30){
+            throw new IllegalArgumentException("El asiento debe estar entre 1 y 30");
+        }
+        for (Pasajero p : coleccion) { //for - each
+
+            if (p.getNumeroAsiento() == asiento) {
+                return p;
+            }
+
+        }
+        return null;
+    }
+    //Iveth Castro R2
+     public int posicionPorAsiento(int asiento) {
+        // TODO R2: posiciones desde 1; devolver -1 si no está en la fila.
+
+        if (asiento < 1 || asiento > 30) {
+            throw new IllegalArgumentException("El asiento debe estar entre 1 y 30");
+        }
+        int posicion=1;
+        for (Pasajero p : coleccion) {
+            if (p.getNumeroAsiento() == asiento) {
+                return posicion;
+            }
+            posicion += 1;
+        }
+        return -1;
+    }
+    //Iveth Castro precios por clase
+    public double obtenerPrecio(String tipoAsiento) {
+
+        if ("PRIMERA CLASE".equals(tipoAsiento)) {
+            return 450;
+        } else if ("EJECUTIVA".equals(tipoAsiento)) {
+            return 250;
+        } else if ("ECONOMICA".equals(tipoAsiento)) {
+            return 120;
+        }
+
+        throw new IllegalArgumentException("Categoría de asiento no válida");
     }
 
-    public int posicionPorAsiento(int asiento) {
-        // TODO R2: posiciones desde 1; devolver -1 si no está en la fila.
-        throw new UnsupportedOperationException("Pendiente implementar R2: posición");
-    }
 
     public Pasajero cancelarPorAsiento(int asiento) {
         // TODO R3: retirar únicamente al indicado y conservar el orden restante.
