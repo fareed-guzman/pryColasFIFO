@@ -17,8 +17,12 @@ public class Cola {
             throw new IllegalArgumentException("El pasajero no puede ser nulo");
         }
 
-        // TODO R1: validar nombre, asiento entre 1 y 30 y asiento no repetido.
-        // Validar ANTES de modificar la colección.
+        // 1. Nombre válido - R1.Fareed Guzmán
+        if (p.getNombre() == null || p.getNombre().isBlank()) {
+            // Valida que el nombre ingresado no se null, o que esté vacío o formado por espacios.
+            throw new IllegalArgumentException("ERROR: Ingrese el nombre del pasajero\n" +
+                    "El nombre es obligatorio y no puede estar vacío.");
+        }
 
         coleccion.offer(p);
     }
