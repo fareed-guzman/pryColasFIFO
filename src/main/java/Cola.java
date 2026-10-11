@@ -50,7 +50,7 @@ public class Cola {
         } else if ("EJECUTIVA".equals(tipo)) {
             limite = 6;
         } else if ("ECONOMICA".equals(tipo)) {
-            limite = 2;
+            limite = 10;
         } else {
             throw new IllegalArgumentException("ERROR: Categoría no valida\n" +
                     "Elija una categoría de asientos.");
