@@ -24,6 +24,12 @@ public class Cola {
                     "El nombre es obligatorio y no puede estar vacío.");
         }
 
+        // 2. Asiento en rango del 1 al 30 - R1.Fareed Guzmán
+        if (p.getNumeroAsiento() < 1 || p.getNumeroAsiento() > 30) {
+            throw new IllegalArgumentException("ERROR: Ingrese un asiento válido\n" +
+                    "Elija un asiento del 1 al 30.");
+        }
+
         coleccion.offer(p);
     }
 
