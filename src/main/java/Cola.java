@@ -17,6 +17,8 @@ public class Cola {
             throw new IllegalArgumentException("El pasajero no puede ser nulo");
         }
 
+        //VALIDACIONES R1.
+
         // 1. Nombre válido - R1.Fareed Guzmán
         if (p.getNombre() == null || p.getNombre().isBlank()) {
             // Valida que el nombre ingresado no se null, o que esté vacío o formado por espacios.
@@ -29,6 +31,16 @@ public class Cola {
             throw new IllegalArgumentException("ERROR: Ingrese un asiento válido\n" +
                     "Elija un asiento del 1 al 30.");
         }
+
+        // 3. Asiento repetido - R1.Fareed Guzmán
+        for (Pasajero x : coleccion) {
+            if (p.getNumeroAsiento() == x.getNumeroAsiento()) {
+                throw new IllegalArgumentException(
+                        "ERROR: Seleccione otro asiento\n" +
+                                "El asiento " + p.getNumeroAsiento() + " ya está ocupado.");
+            }
+        }
+        // R1.FAREED GUZMÁN.
 
         coleccion.offer(p);
     }
