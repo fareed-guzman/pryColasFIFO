@@ -22,22 +22,24 @@ public class Cola {
         // 1. Nombre válido - R1
         if (p.getNombre() == null || p.getNombre().isBlank()) {
             // Valida que el nombre ingresado no se null, o que esté vacío o formado por espacios.
-            throw new IllegalArgumentException("ERROR: Ingrese el nombre del pasajero\n" +
-                    "El nombre es obligatorio y no puede estar vacío.");
+            throw new IllegalArgumentException("NOMBRE NO VÁLIDO" +
+                    "\nEl nombre es obligatorio y no puede estar vacío." +
+                    "\nIngrese el nombre del pasajero.");
         }
 
         // 2. Asiento en rango del 1 al 30 - R1
         if (p.getNumeroAsiento() < 1 || p.getNumeroAsiento() > 30) {
-            throw new IllegalArgumentException("ERROR: Ingrese un asiento válido\n" +
-                    "Elija un asiento del 1 al 30.");
+            throw new IllegalArgumentException("ASIENTO NO VÁLIDO" +
+                    "\nEl asiento " + p.getNumeroAsiento() + " no existe." +
+                    "\nElija un asiento del 1 al 30.");
         }
 
         // 3. Asiento repetido - R1
         for (Pasajero x : coleccion) {
             if (p.getNumeroAsiento() == x.getNumeroAsiento()) {
-                throw new IllegalArgumentException(
-                        "ERROR: Seleccione otro asiento\n" +
-                                "El asiento " + p.getNumeroAsiento() + " ya está ocupado.");
+                throw new IllegalArgumentException("ASIENTO OCUPADO" +
+                        "\nEl asiento " + p.getNumeroAsiento() + " ya está ocupado." +
+                        "\nElija otro asiento.");
             }
         }
 
@@ -52,8 +54,9 @@ public class Cola {
         } else if ("ECONOMICA".equals(tipo)) {
             limite = 15; //10 antes
         } else {
-            throw new IllegalArgumentException("ERROR: Categoría no válida\n" +
-                    "Elija una categoría de asientos.");
+            throw new IllegalArgumentException("CATEGORÍA NO VÁLIDA" +
+                    "\nLa categoría no existe." +
+                    "\nElija ECONOMICA, EJECUTIVA O PRIMERA CLASE.");
         }
 
         int ocupados = 0;
@@ -64,8 +67,9 @@ public class Cola {
         }
 
         if (ocupados >= limite) {
-            throw new IllegalArgumentException("ERROR: Sin cupo en " + tipo +
-                    "\nEl máximo es " + limite + " pasajeros.");
+            throw new IllegalArgumentException("Sin cupo en " + tipo +
+                    "\nEl máximo es " + limite + " pasajeros." +
+                    "\nElija otra categoría.");
         }
 
         // R1.FAREED GUZMÁN
