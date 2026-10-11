@@ -190,7 +190,7 @@ public class Cola {
     }
     /* R3 */
 
-
+    //Iveth Castro
     @Override
     public String toString() {
         if (coleccion.isEmpty()) {
@@ -199,7 +199,9 @@ public class Cola {
         StringBuilder sb = new StringBuilder();
         int posicion = 1;
         for (Pasajero p : coleccion) {
-            sb.append(posicion++).append(". ").append(p).append("\n");
+            sb.append(posicion++).append(". ").append(p)
+                    .append(" | Precio: $").append(obtenerPrecio(p.getTipoAsiento()))
+                    .append("\n");
         }
         return sb.toString();
     }
