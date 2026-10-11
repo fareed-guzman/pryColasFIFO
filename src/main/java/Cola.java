@@ -17,22 +17,22 @@ public class Cola {
             throw new IllegalArgumentException("El pasajero no puede ser nulo");
         }
 
-        //VALIDACIONES R1.
+        //VALIDACIONES R1
 
-        // 1. Nombre válido - R1.Fareed Guzmán
+        // 1. Nombre válido - R1
         if (p.getNombre() == null || p.getNombre().isBlank()) {
             // Valida que el nombre ingresado no se null, o que esté vacío o formado por espacios.
             throw new IllegalArgumentException("ERROR: Ingrese el nombre del pasajero\n" +
                     "El nombre es obligatorio y no puede estar vacío.");
         }
 
-        // 2. Asiento en rango del 1 al 30 - R1.Fareed Guzmán
+        // 2. Asiento en rango del 1 al 30 - R1
         if (p.getNumeroAsiento() < 1 || p.getNumeroAsiento() > 30) {
             throw new IllegalArgumentException("ERROR: Ingrese un asiento válido\n" +
                     "Elija un asiento del 1 al 30.");
         }
 
-        // 3. Asiento repetido - R1.Fareed Guzmán
+        // 3. Asiento repetido - R1
         for (Pasajero x : coleccion) {
             if (p.getNumeroAsiento() == x.getNumeroAsiento()) {
                 throw new IllegalArgumentException(
@@ -40,7 +40,35 @@ public class Cola {
                                 "El asiento " + p.getNumeroAsiento() + " ya está ocupado.");
             }
         }
-        // R1.FAREED GUZMÁN.
+
+        // 4. Cupo por categoría - R1
+        String tipo = p.getTipoAsiento();
+        int limite;
+
+        if ("PRIMERA CLASE".equals(tipo)) {
+            limite = 4;
+        } else if ("EJECUTIVA".equals(tipo)) {
+            limite = 6;
+        } else if ("ECONOMICA".equals(tipo)) {
+            limite = 2;
+        } else {
+            throw new IllegalArgumentException("ERROR: Categoría no valida\n" +
+                    "Elija una categoría de asientos.");
+        }
+
+        int ocupados = 0;
+        for (Pasajero x : coleccion) {
+            if (tipo.equals(x.getTipoAsiento())) {
+                ocupados++;
+            }
+        }
+
+        if (ocupados >= limite) {
+            throw new IllegalArgumentException("ERROR: Sin cupo en " + tipo +
+                    "\nEl máximo es " + limite + " pasajeros.");
+        }
+
+        // R1.FAREED GUZMÁN
 
         coleccion.offer(p);
     }
