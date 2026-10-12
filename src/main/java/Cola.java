@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Queue;
+import java.util.HashMap; //
+import java.util.Map; //
 
 public class Cola {
     private final Queue<Pasajero> coleccion;
@@ -11,6 +13,7 @@ public class Cola {
     public Cola() {
         coleccion = new LinkedList<>();
     }
+    private final Map<Integer, String> claseDeAsiento = new HashMap<>(); //
 
     public void agregar(Pasajero p) {
         if (p == null) {
@@ -27,8 +30,17 @@ public class Cola {
                     "\nIngrese el nombre del pasajero.");
         }
 
+        // 1b. Nombre sin números - R1
+        for (char letra : p.getNombre().toCharArray()) {   // Recorro el nombre letra por letra.
+            if (Character.isDigit(letra)) {                // Rechaza si alguna letra es un dígito.
+                throw new IllegalArgumentException("NOMBRE NO VÁLIDO" +
+                        "\nEl nombre no puede contener números." +
+                        "\nIngrese un nombre sin números.");
+            }
+        }
+
         // 2. Asiento en rango del 1 al 30 - R1
-        if (p.getNumeroAsiento() < 1 || p.getNumeroAsiento() > 30) {
+        if (p.getNumeroAsiento() < 1 || p.getNumeroAsiento() > 30) { // Rechaza asientos fuera de 1-30.
             throw new IllegalArgumentException("ASIENTO NO VÁLIDO" +
                     "\nEl asiento " + p.getNumeroAsiento() + " no existe." +
                     "\nElija un asiento del 1 al 30.");
@@ -36,7 +48,7 @@ public class Cola {
 
         // 3. Asiento repetido - R1
         for (Pasajero x : coleccion) {
-            if (p.getNumeroAsiento() == x.getNumeroAsiento()) {
+            if (p.getNumeroAsiento() == x.getNumeroAsiento()) { // Rechaza si alguien ya tiene asiento.
                 throw new IllegalArgumentException("ASIENTO OCUPADO" +
                         "\nEl asiento " + p.getNumeroAsiento() + " ya está ocupado." +
                         "\nElija otro asiento.");
@@ -44,7 +56,7 @@ public class Cola {
         }
 
         // 4. Cupo por categoría - R1
-        String tipo = p.getTipoAsiento();
+        String tipo = p.getTipoAsiento(); // Guarda la categoría del pasajero para no repetir.
         int limite;
 
         if ("PRIMERA CLASE".equals(tipo)) {
@@ -53,24 +65,34 @@ public class Cola {
             limite = 9; //6 antes
         } else if ("ECONOMICA".equals(tipo)) {
             limite = 15; //10 antes
-        } else {
+        } else { // Otra categoría se rechaza.
             throw new IllegalArgumentException("CATEGORÍA NO VÁLIDA" +
                     "\nLa categoría no existe." +
                     "\nElija ECONOMICA, EJECUTIVA O PRIMERA CLASE.");
         }
 
-        int ocupados = 0;
+        int ocupados = 0; // Pasajeros de esta categoría en la fila.
         for (Pasajero x : coleccion) {
-            if (tipo.equals(x.getTipoAsiento())) {
+            if (tipo.equals(x.getTipoAsiento())) { // Valida si es de la misma categoría que el nuevo.
                 ocupados++;
             }
         }
 
-        if (ocupados >= limite) {
-            throw new IllegalArgumentException("Sin cupo en " + tipo +
-                    "\nEl máximo es " + limite + " pasajeros." +
+        if (ocupados >= limite) { // Rechaza si ya se llegó al cupo máximo.
+            throw new IllegalArgumentException("SIN CUPO EN '" + tipo +
+                    "'\nEl máximo es " + limite + " pasajeros." +
                     "\nElija otra categoría.");
         }
+
+        // 5. Un asiento conserva su clase - R1
+        String claseFija = claseDeAsiento.get(p.getNumeroAsiento());   // Clase que ya tenía este asiento.
+        if (claseFija != null && !claseFija.equals(tipo)) {            // Rechaza si ya tenía clase y es distinta.
+            throw new IllegalArgumentException("CAMBIO DE CLASE NO PERMITIDO" +
+                    "\nEl asiento " + p.getNumeroAsiento() + " pertenece a la categoría '" + claseFija + "'." +
+                    "\nElija esa categoría u otro asiento.");
+        }
+
+        claseDeAsiento.put(p.getNumeroAsiento(), tipo);   // Recuerda la clase de este asiento.
 
         // R1.FAREED GUZMÁN
 
