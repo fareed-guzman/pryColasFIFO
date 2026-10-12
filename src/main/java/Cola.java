@@ -170,12 +170,49 @@ public class Cola {
         throw new IllegalArgumentException("Categoría de asiento no válida");
     }
 
+ /* Zaskia Sunta */
+        // TODO R3: retirar únicamente al indicado y conservar el orden restante.
+         
 
     public Pasajero cancelarPorAsiento(int asiento) {
-        // TODO R3: retirar únicamente al indicado y conservar el orden restante.
-        throw new UnsupportedOperationException("Pendiente implementar R3: cancelación");
-    }
+        if (asiento < 1 || asiento > 30) {
+            throw new IllegalArgumentException(
+                    "El asiento debe estar entre 1 y 30"
+            );
+        }
 
+        Pasajero cancelado = null;
+
+        for (Pasajero p : coleccion) {
+            if (p.getNumeroAsiento() == asiento) {
+                cancelado = p;
+                break;
+            }
+        }
+
+        if (cancelado == null) {
+            throw new NoSuchElementException(
+                    "No existe un pasajero pendiente con el asiento " + asiento
+            );
+        }
+
+        Queue<Pasajero> auxiliar = new LinkedList<>();
+
+        while (!coleccion.isEmpty()) {
+            Pasajero p = coleccion.poll();
+
+            if (p.getNumeroAsiento() != asiento) {
+                auxiliar.offer(p);
+            }
+        }
+
+        coleccion.addAll(auxiliar);
+
+        return cancelado;
+    }
+    /* R3 */
+
+    //Iveth Castro
     @Override
     public String toString() {
         if (coleccion.isEmpty()) {
@@ -184,7 +221,9 @@ public class Cola {
         StringBuilder sb = new StringBuilder();
         int posicion = 1;
         for (Pasajero p : coleccion) {
-            sb.append(posicion++).append(". ").append(p).append("\n");
+            sb.append(posicion++).append(". ").append(p)
+                    .append(" | Precio: $").append(obtenerPrecio(p.getTipoAsiento()))
+                    .append("\n");
         }
         return sb.toString();
     }
