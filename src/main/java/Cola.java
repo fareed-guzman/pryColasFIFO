@@ -39,6 +39,22 @@ public class Cola {
             }
         }
 
+        // 1c. Nombre solo con letras y espacios - R1
+        for (char letra : p.getNombre().toCharArray()) {          // Recorro el nombre letra por letra
+            if (!Character.isLetter(letra) && letra != ' ') {      // Rechaza si no es letra y tampoco es espacio
+                throw new IllegalArgumentException("NOMBRE NO VÁLIDO" +
+                        "\nEl nombre solo puede contener letras y espacios." +
+                        "\nIngrese un nombre sin números ni símbolos.");
+            }
+        }
+
+        // 1d. Nombre con al menos 2 letras - R1
+        if (p.getNombre().trim().length() < 2) {   // trim() quita los espacios de los extremos; length() cuenta los caracteres
+            throw new IllegalArgumentException("NOMBRE NO VÁLIDO" +
+                    "\nEl nombre es demasiado corto." +
+                    "\nIngrese al menos 2 letras.");
+        }
+
         // 2. Asiento en rango del 1 al 30 - R1
         if (p.getNumeroAsiento() < 1 || p.getNumeroAsiento() > 30) { // Rechaza asientos fuera de 1-30.
             throw new IllegalArgumentException("ASIENTO NO VÁLIDO" +
