@@ -65,7 +65,7 @@ public class Ventana extends JFrame {
             txtNombre.setText("");
             lblMensaje.setText("Pasajero registrado: " + p.getNombre());
         }));
-
+        //añadio precio
         btnBuscar.addActionListener(e -> ejecutar(() -> {
             int asiento = (Integer) spiConsulta.getValue();
             Pasajero p = cola.buscarPorAsiento(asiento);
@@ -84,11 +84,12 @@ public class Ventana extends JFrame {
 
         btnFrente.addActionListener(e -> ejecutar(() ->
                 lblMensaje.setText("Siguiente: " + cola.frente())));
-
+        //añadio precio
         btnAtender.addActionListener(e -> ejecutar(() -> {
             Pasajero p = cola.extraer();
             p.setCheckin(true);
-            lblMensaje.setText("Check-in completado: " + p);
+            lblMensaje.setText("Check-in completado: " + p
+                    + " | Precio: $" + cola.obtenerPrecio(p.getTipoAsiento()));
         }));
 
         actualizarVista();
