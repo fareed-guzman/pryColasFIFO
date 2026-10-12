@@ -101,8 +101,9 @@ public class Ventana extends JFrame {
         try {
             accion.run();
         } catch (RuntimeException ex) {
-            lblMensaje.setText(ex.getMessage());
-            JOptionPane.showMessageDialog(this, ex.getMessage(),
+            String mensaje = ex.getMessage();
+            lblMensaje.setText(mensaje.replace("\n", "  |  "));
+            JOptionPane.showMessageDialog(this, mensaje,
                     "Aviso", JOptionPane.WARNING_MESSAGE);
         }
         actualizarVista();
