@@ -146,7 +146,7 @@ Las pruebas verifican el modelo; esta demostración comprueba que los botones mu
 |---|---|---|---|
 | Fareed Guzmán | fareed-guzman | R1:validaciones de Cola.agregar | https://github.com/fareed-guzman/pryColasFIFO/commit/678fd7217881f4a6789066f48be42c17f19979bd |
 | Iveth Castro | IvethCastro | R2: buscarPorAsiento y posicionPorAsiento | Por completar |
-| Zaskia Sunta | Zyvoxw | R3: cancelarPorAsiento |nhttps://github.com/fareed-guzman/pryColasFIFO/commits/main/?author=Zyvoxw |
+| Zaskia Sunta | Zyvoxw | R3: cancelarPorAsiento |https://github.com/fareed-guzman/pryColasFIFO/commits/main/?author=Zyvoxw |
 
 
 Cada estudiante debe subir su aporte con su cuenta y comprobar que GitHub lo muestre como autor. Si utilizan Git local, el correo configurado debe estar asociado a esa cuenta. No compartir cuentas. No es obligatorio usar ramas o pull requests: pueden trabajar por turnos e integrar sus cambios, conservando los aportes individuales.
