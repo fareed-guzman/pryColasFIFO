@@ -144,8 +144,8 @@ Las pruebas verifican el modelo; esta demostración comprueba que los botones mu
 
 | Integrante | Usuario de GitHub | Qué desarrolló | Enlace a su commit |
 |---|---|---|---|
-| Fareed Guzmán | fareed-guzman | R1:validaciones de Cola.agregar | https://github.com/fareed-guzman/pryColasFIFO/commit/678fd7217881f4a6789066f48be42c17f19979bd |
-| Iveth Castro | IvethCastro | R2: buscarPorAsiento y posicionPorAsiento | Por completar |
+| Fareed Guzmán | fareed-guzman | R1:validaciones de Cola.agregar | https://github.com/fareed-guzman/pryColasFIFO/commits/main/?author=fareed-guzman |
+| Iveth Castro | IvethCastro | R2: buscarPorAsiento y posicionPorAsiento | https://github.com/fareed-guzman/pryColasFIFO/commits/main/?author=IvethCastro |
 | Zaskia Sunta | Zyvoxw | R3: cancelarPorAsiento |https://github.com/fareed-guzman/pryColasFIFO/commits/main/?author=Zyvoxw |
 
 
