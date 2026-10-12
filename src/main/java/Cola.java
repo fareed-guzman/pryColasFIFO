@@ -62,6 +62,13 @@ public class Cola {
                     "\nElija un asiento del 1 al 30.");
         }
 
+        // 2b. Todos los asientos ocupados - R1
+        if (coleccion.size() >= 30) {   // Con 30 pasajeros en la fila no queda ningún asiento libre
+            throw new IllegalArgumentException("SIN ASIENTOS DISPONIBLES" +
+                    "\nLos 30 asientos ya están ocupados." +
+                    "\nEspere a que se atienda o se cancele un registro.");
+        }
+
         // 3. Asiento repetido - R1
         for (Pasajero x : coleccion) {
             if (p.getNumeroAsiento() == x.getNumeroAsiento()) { // Rechaza si alguien ya tiene asiento.
@@ -95,8 +102,8 @@ public class Cola {
         }
 
         if (ocupados >= limite) { // Rechaza si ya se llegó al cupo máximo.
-            throw new IllegalArgumentException("SIN CUPO EN '" + tipo +
-                    "'\nEl máximo es " + limite + " pasajeros." +
+            throw new IllegalArgumentException("SIN CUPO EN: " + tipo +
+                    "\nEl máximo es " + limite + " pasajeros." +
                     "\nElija otra categoría.");
         }
 
@@ -104,8 +111,9 @@ public class Cola {
         String claseFija = claseDeAsiento.get(p.getNumeroAsiento());   // Clase que ya tenía este asiento.
         if (claseFija != null && !claseFija.equals(tipo)) {            // Rechaza si ya tenía clase y es distinta.
             throw new IllegalArgumentException("CAMBIO DE CLASE NO PERMITIDO" +
-                    "\nEl asiento " + p.getNumeroAsiento() + " pertenece a la categoría '" + claseFija + "'." +
-                    "\nElija esa categoría u otro asiento.");
+                    "\nEl asiento " + p.getNumeroAsiento() + " ya está asignado a " + claseFija +
+                    " y no puede registrarse como " + tipo + "." +
+                    "\nElija la categoría " + claseFija + " o escoja otro asiento.");
         }
 
         claseDeAsiento.put(p.getNumeroAsiento(), tipo);   // Recuerda la clase de este asiento.
